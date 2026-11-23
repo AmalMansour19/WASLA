@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color-scheme: light;
+
+    --wasla-primary: #59643b;
+    --wasla-primary-dark: #414b2b;
+    --wasla-background: #faf9f6;
+    --wasla-surface: #ffffff;
+    --wasla-text: #25271f;
+    --wasla-muted: #77796f;
+    --wasla-border: #e8e7e1;
+}
+
+.dark {
+    color-scheme: dark;
+
+    --wasla-primary: #a6b47b;
+    --wasla-primary-dark: #c0cc9b;
+    --wasla-background: #171914;
+    --wasla-surface: #22251e;
+    --wasla-text: #f2f1e9;
+    --wasla-muted: #b0b1a6;
+    --wasla-border: #393c32;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--wasla-background);
+    color: var(--wasla-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
