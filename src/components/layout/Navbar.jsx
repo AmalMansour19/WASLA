@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 
 import {
-    Compass,
     Languages,
     Menu,
     Moon,
@@ -18,6 +17,7 @@ import {
     LogOut,
     ChevronDown,
     LayoutDashboard,
+    MapPin,
 } from 'lucide-react';
 
 import { usePreferences } from '../../app/contexts/PreferencesContext.jsx';
@@ -55,6 +55,36 @@ const roleLinks = {
         { to: '/packages', key: 'packages' },
     ],
 };
+
+function BrandLogo() {
+    return (
+        <Link
+            to="/"
+            className="group flex shrink-0 items-center gap-3"
+            aria-label="WASLA home"
+        >
+            <span className="relative flex h-12 w-12 items-center justify-center">
+                <span className="absolute inset-0 rounded-2xl bg-[#FF8A32] rotate-[-8deg] transition-transform duration-300 group-hover:rotate-0" />
+
+                <span className="relative flex h-11 w-11 items-center justify-center rounded-2xl border-2 border-white/20 bg-[#102B43] text-[#FF8A32]">
+                    <MapPin size={29} strokeWidth={2.5} />
+                </span>
+
+                <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#102B43] bg-[#FFD08A]" />
+            </span>
+
+            <span className="flex flex-col">
+                <span className="text-[27px] font-black italic leading-none tracking-[0.08em] text-white transition-colors duration-300 group-hover:text-[#FFAD65]">
+                    WASLA
+                </span>
+
+                <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#FF9A4D]">
+                    Explore Egypt
+                </span>
+            </span>
+        </Link>
+    );
+}
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,22 +132,22 @@ function Navbar() {
     }, [location.pathname]);
 
     const getLinkClass = ({ isActive }) => `
-        relative py-2 text-sm font-semibold transition-colors
-        after:absolute after:bottom-0 after:start-0 after:h-0.5
-        after:bg-[#59643b] after:transition-all
-        dark:after:bg-[#a6b47b]
-        ${isActive
-            ? 'text-[#59643b] after:w-full dark:text-[#a6b47b]'
-            : 'text-[var(--wasla-muted)] after:w-0 hover:text-[#59643b] hover:after:w-full dark:hover:text-[#a6b47b]'
+        relative rounded-full px-2 py-2.5 text-sm font-bold
+        transition-all duration-200 ease-out
+        ${
+            isActive
+                ? 'bg-[#FF8A32] text-[#10243A] shadow-md shadow-[#FF8A32]/20'
+                : 'text-[#E6EDF4] hover:bg-white/10 hover:text-[#FFAD65]'
         }
     `;
 
     const actionButtonClass = `
         inline-flex h-10 items-center justify-center gap-2
-        rounded-xl border border-[var(--wasla-border)]
-        px-3 text-sm font-semibold text-[var(--wasla-text)]
-        transition hover:border-[#59643b] hover:bg-[#59643b]/5
-        dark:hover:border-[#a6b47b] dark:hover:bg-[#a6b47b]/10
+        rounded-xl border border-white/20 bg-white/[0.04]
+        px-3 text-sm font-semibold text-white
+        transition-all duration-300
+        hover:border-[#FF8A32] hover:bg-[#FF8A32]/10
+        hover:text-[#FFAD65]
     `;
 
     function handleLogout() {
@@ -140,10 +170,12 @@ function Navbar() {
                 className={
                     mobile
                         ? ({ isActive }) => `
-                            rounded-xl px-4 py-3 text-sm font-semibold transition
-                            ${isActive
-                                ? 'bg-[#59643b]/10 text-[#59643b] dark:bg-[#a6b47b]/10 dark:text-[#a6b47b]'
-                                : 'text-[var(--wasla-text)] hover:bg-[var(--wasla-background)]'
+                            rounded-xl px-4 py-3 text-sm font-bold
+                            transition-all duration-300
+                            ${
+                                isActive
+                                    ? 'bg-[#FF8A32] text-[#10243A]'
+                                    : 'text-white hover:bg-white/10 hover:text-[#FFAD65]'
                             }
                         `
                         : getLinkClass
@@ -157,34 +189,16 @@ function Navbar() {
     }
 
     return (
-        <header className="sticky top-0 z-50 border-b border-[var(--wasla-border)] bg-[var(--wasla-surface)]/95 shadow-sm backdrop-blur-md">
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-[#10243A] shadow-xl shadow-[#071727]/20">
             <nav
-                className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
+                className="mx-auto flex min-h-[82px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
                 aria-label="Main navigation"
             >
                 {/* Brand */}
-                <Link
-                    to="/"
-                    className="flex shrink-0 items-center gap-2"
-                    aria-label="WASLA home"
-                >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#59643b] text-white">
-                        <Compass size={25} strokeWidth={2.2} />
-                    </span>
-
-                    <span className="flex flex-col">
-                        <span className="text-2xl font-black leading-none tracking-[0.12em] text-[#59643b] dark:text-[#a6b47b]">
-                            WASLA
-                        </span>
-
-                        <span className="mt-1 text-[10px] font-medium tracking-wide text-[var(--wasla-muted)]">
-                            {t('exploreEgypt')}
-                        </span>
-                    </span>
-                </Link>
+                <BrandLogo />
 
                 {/* Desktop Navigation */}
-                <div className="hidden items-center gap-7 lg:flex">
+                <div className="hidden items-center gap-1 xl:flex">
                     {renderNavigationLinks()}
                 </div>
 
@@ -206,7 +220,7 @@ function Navbar() {
                     <button
                         type="button"
                         onClick={toggleTheme}
-                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--wasla-border)] text-[var(--wasla-text)] transition hover:border-[#59643b] hover:bg-[#59643b]/5 dark:hover:border-[#a6b47b]"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 text-white transition-all duration-300 hover:border-[#FF8A32] hover:bg-[#FF8A32]/10 hover:text-[#FFAD65]"
                         aria-label={t('appearance')}
                         title={t('appearance')}
                     >
@@ -230,7 +244,7 @@ function Navbar() {
 
                                 <Link
                                     to="/signup"
-                                    className="inline-flex h-10 items-center justify-center rounded-xl bg-[#59643b] px-4 text-sm font-semibold text-white transition hover:bg-[#414b2b] dark:bg-[#a6b47b] dark:text-[#171914] dark:hover:bg-[#c0cc9b]"
+                                    className="inline-flex h-10 items-center justify-center rounded-xl bg-[#FF8A32] px-4 text-sm font-extrabold text-[#10243A] shadow-md shadow-[#FF8A32]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFAD65] hover:shadow-lg"
                                 >
                                     {t('signup')}
                                 </Link>
@@ -255,13 +269,13 @@ function Navbar() {
                                 </button>
 
                                 {isAccountMenuOpen && (
-                                    <div className="absolute end-0 top-full mt-3 w-60 rounded-xl border border-[var(--wasla-border)] bg-[var(--wasla-surface)] p-3 shadow-xl">
-                                        <div className="border-b border-[var(--wasla-border)] px-3 pb-3">
-                                            <p className="truncate text-sm font-bold text-[var(--wasla-text)]">
+                                    <div className="absolute end-0 top-full mt-3 w-60 rounded-2xl border border-white/10 bg-[#10243A] p-3 shadow-2xl shadow-black/30">
+                                        <div className="border-b border-white/10 px-3 pb-3">
+                                            <p className="truncate text-sm font-bold text-white">
                                                 {user?.name}
                                             </p>
 
-                                            <p className="mt-1 text-xs text-[var(--wasla-muted)]">
+                                            <p className="mt-1 text-xs text-[#FFAD65]">
                                                 {roleLabels[user?.role] || user?.role}
                                             </p>
                                         </div>
@@ -270,7 +284,7 @@ function Navbar() {
                                             <Link
                                                 to={dashboardPath}
                                                 onClick={() => setIsAccountMenuOpen(false)}
-                                                className="mt-2 flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-[var(--wasla-text)] transition hover:bg-[var(--wasla-background)]"
+                                                className="mt-2 flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 hover:text-[#FFAD65]"
                                             >
                                                 <LayoutDashboard size={17} />
                                                 {dashboardLabels[language]}
@@ -280,7 +294,7 @@ function Navbar() {
                                         <button
                                             type="button"
                                             onClick={handleLogout}
-                                            className="mt-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50 dark:hover:bg-red-950/30"
+                                            className="mt-1 flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-red-400 transition hover:bg-red-500/10"
                                         >
                                             <LogOut size={17} />
                                             {language === 'ar'
@@ -297,7 +311,7 @@ function Navbar() {
                     <button
                         type="button"
                         onClick={() => setIsMenuOpen((current) => !current)}
-                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--wasla-border)] text-[var(--wasla-text)] transition hover:bg-[#59643b]/5 lg:hidden"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 text-white transition hover:border-[#FF8A32] hover:bg-[#FF8A32]/10 lg:hidden"
                         aria-label={isMenuOpen ? t('closeMenu') : t('menu')}
                         aria-expanded={isMenuOpen}
                         aria-controls="mobile-navigation"
@@ -311,19 +325,19 @@ function Navbar() {
             {isMenuOpen && (
                 <div
                     id="mobile-navigation"
-                    className="border-t border-[var(--wasla-border)] bg-[var(--wasla-surface)] px-4 py-5 shadow-lg lg:hidden sm:px-6"
+                    className="border-t border-white/10 bg-[#10243A] px-4 py-5 shadow-xl lg:hidden sm:px-6"
                 >
                     <div className="mx-auto flex max-w-7xl flex-col gap-2">
                         {renderNavigationLinks(true)}
 
-                        <div className="my-2 border-t border-[var(--wasla-border)]" />
+                        <div className="my-2 border-t border-white/10" />
 
                         {!isAuthenticated ? (
                             <div className="flex flex-col gap-2">
                                 <Link
                                     to="/login"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="rounded-xl border border-[var(--wasla-border)] px-4 py-3 text-center text-sm font-semibold text-[var(--wasla-text)]"
+                                    className="rounded-xl border border-white/20 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10"
                                 >
                                     {t('login')}
                                 </Link>
@@ -331,25 +345,25 @@ function Navbar() {
                                 <Link
                                     to="/signup"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="rounded-xl bg-[#59643b] px-4 py-3 text-center text-sm font-semibold text-white dark:bg-[#a6b47b] dark:text-[#171914]"
+                                    className="rounded-xl bg-[#FF8A32] px-4 py-3 text-center text-sm font-extrabold text-[#10243A] transition hover:bg-[#FFAD65]"
                                 >
                                     {t('signup')}
                                 </Link>
                             </div>
                         ) : (
-                            <div className="rounded-xl border border-[var(--wasla-border)] p-4">
+                            <div className="rounded-xl border border-white/10 p-4">
                                 <div className="mb-3 flex items-center gap-3">
                                     <UserCircle
                                         size={30}
-                                        className="text-[#59643b] dark:text-[#a6b47b]"
+                                        className="text-[#FF8A32]"
                                     />
 
                                     <div className="min-w-0">
-                                        <p className="truncate text-sm font-bold text-[var(--wasla-text)]">
+                                        <p className="truncate text-sm font-bold text-white">
                                             {user?.name}
                                         </p>
 
-                                        <p className="text-xs text-[var(--wasla-muted)]">
+                                        <p className="text-xs text-[#FFAD65]">
                                             {roleLabels[user?.role] || user?.role}
                                         </p>
                                     </div>
@@ -359,7 +373,7 @@ function Navbar() {
                                     <Link
                                         to={dashboardPath}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="mb-2 flex items-center justify-center gap-2 rounded-lg border border-[var(--wasla-border)] px-4 py-3 text-sm font-semibold text-[var(--wasla-text)]"
+                                        className="mb-2 flex items-center justify-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                                     >
                                         <LayoutDashboard size={17} />
                                         {dashboardLabels[language]}
@@ -369,7 +383,7 @@ function Navbar() {
                                 <button
                                     type="button"
                                     onClick={handleLogout}
-                                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-3 text-sm font-semibold text-red-600 dark:bg-red-950/30"
+                                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-400 transition hover:bg-red-500/20"
                                 >
                                     <LogOut size={17} />
                                     {language === 'ar'
