@@ -18,8 +18,8 @@ import ProtectedRoute from './guards/ProtectedRoute.jsx';
 import RoleRoute from './guards/RoleRoute.jsx';
 import DashboardRedirect from './guards/DashboardRedirect.jsx';
 import TouristDashboardPage from '../features/tourist/pages/TouristDashboardPage.jsx';
-import GuideDashboardPage from '../features/dashboard/guide/pages/GuideDashboardPage.jsx';
-import AdminDashboardPage from '../features/dashboard/admin/pages/AdminDashboardPage.jsx';
+import GuideDashboardPage from '../features/guide/pages/GuideDashboardPage.jsx';
+import AdminDashboardPage from '../features/admin/pages/AdminDashboardPage.jsx';
 const router = createBrowserRouter([
     {
         path: '/',
