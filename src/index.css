@@ -41,3 +41,133 @@ body {
     color: var(--wasla-text);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+
+
+/* About Page - Scroll Reveal */
+
+.scroll-reveal>* {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.scroll-reveal.is-visible>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal.is-visible>*:nth-child(2) {
+    transition-delay: 150ms;
+}
+
+.scroll-reveal.is-visible>*:nth-child(3) {
+    transition-delay: 300ms;
+}
+
+.scroll-reveal.is-visible>*:nth-child(4) {
+    transition-delay: 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal>* {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* WASLA Authentication Background */
+
+.auth-shell {
+    background:
+        linear-gradient(135deg,
+            #f8fafc 0%,
+            #f1f5f9 45%,
+            #edf3f8 100%);
+}
+
+.auth-dot-pattern {
+    background-image: radial-gradient(rgba(16, 43, 67, 0.12) 1px,
+            transparent 1px);
+
+    background-size: 28px 28px;
+
+    mask-image: linear-gradient(to bottom,
+            transparent,
+            black 20%,
+            black 80%,
+            transparent);
+}
+
+/* Dark Mode */
+.dark .auth-shell {
+    background:
+        linear-gradient(135deg,
+            #101e2b 0%,
+            #152738 50%,
+            #102b43 100%);
+}
+
+.dark .auth-dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px,
+            transparent 1px);
+}
+
+/* Authentication Page Animations */
+
+@keyframes authPageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes authFormEnter {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.auth-page-enter {
+    animation: authPageEnter 0.7s ease-out both;
+}
+
+.auth-form-enter {
+    animation: authFormEnter 0.8s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-page-enter,
+    .auth-form-enter {
+        animation: none;
+    }
+}
