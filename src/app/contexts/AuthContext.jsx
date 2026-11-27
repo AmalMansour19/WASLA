@@ -10,6 +10,8 @@ import {
     signup as signupService,
     logout as logoutService,
     getCurrentUser,
+    requestPasswordReset as requestPasswordResetService,
+    resetPassword as resetPasswordService,
 } from '../../features/auth/services/authService.js';
 
 const AuthContext = createContext(null);
@@ -29,6 +31,14 @@ export function AuthProvider({ children }) {
         return newUser;
     }
 
+    function requestPasswordReset(email) {
+        return requestPasswordResetService(email);
+    }
+
+    function resetPassword(email, newPassword) {
+        return resetPasswordService(email, newPassword);
+    }
+
     function logout() {
         logoutService();
         setUser(null);
@@ -44,6 +54,8 @@ export function AuthProvider({ children }) {
                 login,
                 signup,
                 logout,
+                requestPasswordReset,
+                resetPassword,
             }}
         >
             {children}
