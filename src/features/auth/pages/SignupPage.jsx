@@ -57,6 +57,8 @@ function SignupPage() {
     const { signup } = useAuth();
     const { language } = usePreferences();
     const navigate = useNavigate();
+    const location = useLocation();
+    const favoritePlaceId = location.state?.favoritePlaceId;
 
     const isArabic = language === 'ar';
     const Arrow = isArabic ? ArrowLeft : ArrowRight;
@@ -171,6 +173,7 @@ function SignupPage() {
             });
 
             navigate('/');
+        }
         } catch (err) {
             setError(
                 isArabic

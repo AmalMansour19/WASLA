@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
 @import "tailwindcss";
 
@@ -7,25 +8,91 @@
     font-family: Arial, Helvetica, sans-serif;
     color-scheme: light;
 
-    --wasla-primary: #59643b;
-    --wasla-primary-dark: #414b2b;
-    --wasla-background: #faf9f6;
-    --wasla-surface: #ffffff;
-    --wasla-text: #25271f;
-    --wasla-muted: #77796f;
-    --wasla-border: #e8e7e1;
+    /* Brand Colors */
+    --wasla-primary: #183B56;
+    --wasla-primary-dark: #102B40;
+    --wasla-primary-light: #244D70;
+    --wasla-primary-soft: #E8F0F6;
+
+    /* Accent Colors */
+    --wasla-accent: #F47C36;
+    --wasla-accent-dark: #D96322;
+    --wasla-accent-light: #FF9B54;
+    --wasla-accent-soft: #FFF1E8;
+
+    /* Backgrounds */
+    --wasla-background: #F7F9FC;
+    --wasla-surface: #FFFFFF;
+    --wasla-surface-alt: #EEF3F7;
+
+    /* Text */
+    --wasla-text: #1C2D3D;
+    --wasla-text-secondary: #34495E;
+    --wasla-muted: #7B8794;
+    --wasla-text-light: #A6B2BE;
+
+    /* Borders & Shadows */
+    --wasla-border: #E1E8EF;
+    --wasla-border-strong: #C7D5E2;
+    --wasla-shadow: rgba(24, 59, 86, 0.08);
+    --wasla-shadow-hover: rgba(24, 59, 86, 0.15);
+
+    /* Status Colors */
+    --wasla-success: #27856A;
+    --wasla-success-soft: #E7F5EF;
+    --wasla-warning: #E5A12C;
+    --wasla-warning-soft: #FFF7E5;
+    --wasla-danger: #D94F4F;
+    --wasla-danger-soft: #FDECEC;
+
+    /* Other */
+    --wasla-white: #FFFFFF;
+    --wasla-black: #15202B;
 }
 
 .dark {
     color-scheme: dark;
 
-    --wasla-primary: #a6b47b;
-    --wasla-primary-dark: #c0cc9b;
-    --wasla-background: #171914;
-    --wasla-surface: #22251e;
-    --wasla-text: #f2f1e9;
-    --wasla-muted: #b0b1a6;
-    --wasla-border: #393c32;
+    /* Brand Colors */
+    --wasla-primary: #7FA7C5;
+    --wasla-primary-dark: #B5D0E3;
+    --wasla-primary-light: #436B8C;
+    --wasla-primary-soft: #243B4D;
+
+    /* Accent Colors */
+    --wasla-accent: #FF9557;
+    --wasla-accent-dark: #F47C36;
+    --wasla-accent-light: #FFB17F;
+    --wasla-accent-soft: #422D22;
+
+    /* Backgrounds */
+    --wasla-background: #111B24;
+    --wasla-surface: #1C2935;
+    --wasla-surface-alt: #253544;
+
+    /* Text */
+    --wasla-text: #F0F4F8;
+    --wasla-text-secondary: #D0DCE6;
+    --wasla-muted: #9BAEBE;
+    --wasla-text-light: #71899C;
+
+    /* Borders & Shadows */
+    --wasla-border: #34495A;
+    --wasla-border-strong: #496174;
+    --wasla-shadow: rgba(0, 0, 0, 0.20);
+    --wasla-shadow-hover: rgba(0, 0, 0, 0.35);
+
+    /* Status Colors */
+    --wasla-success: #62B997;
+    --wasla-success-soft: #1F3A32;
+    --wasla-warning: #F0BB57;
+    --wasla-warning-soft: #403523;
+    --wasla-danger: #F07878;
+    --wasla-danger-soft: #422828;
+
+    /* Other */
+    --wasla-white: #FFFFFF;
+    --wasla-black: #000000;
 }
 
 html {
