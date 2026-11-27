@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { UserPlus, Compass } from 'lucide-react';
+import { addFavorite } from '../../places/services/favoritesService.js';
 
 import { useAuth } from '../../../app/contexts/AuthContext.jsx';
 import { usePreferences } from '../../../app/contexts/PreferencesContext.jsx';
@@ -11,6 +12,8 @@ function SignupPage() {
     const { signup } = useAuth();
     const { language } = usePreferences();
     const navigate = useNavigate();
+    const location = useLocation();
+    const favoritePlaceId = location.state?.favoritePlaceId;
 
     const isArabic = language === 'ar';
 
@@ -47,14 +50,19 @@ function SignupPage() {
         }
 
         try {
-            signup({
-                name: formData.name,
-                email: formData.email,
-                password: formData.password,
-                role: formData.role,
-            });
+        const newUser = signup({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            role: formData.role,
+        });
 
+        if (favoritePlaceId) {
+            addFavorite(newUser.id, favoritePlaceId);
+            navigate('/places');
+        } else {
             navigate('/');
+        }
         } catch (err) {
             setError(
                 isArabic
