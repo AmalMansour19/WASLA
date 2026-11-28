@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
     UserPlus,
     Compass,
@@ -174,7 +174,7 @@ function SignupPage() {
 
             navigate('/');
         }
-        } catch (err) {
+         catch (err) {
             setError(
                 isArabic
                     ? 'البريد الإلكتروني مستخدم بالفعل أو البيانات غير صحيحة.'
