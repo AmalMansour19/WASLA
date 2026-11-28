@@ -7,6 +7,7 @@ import AuthLayout from '../components/layout/AuthLayout.jsx';
 // Public Pages
 import HomePage from '../features/home/pages/HomePage.jsx';
 import PlacesPage from '../features/places/pages/PlacesPage.jsx';
+import GovernoratesPage from '../features/places/pages/GovernoratesPage.jsx';
 import GuidesPage from '../features/guides/pages/GuidesPage.jsx';
 import PackagesPage from '../features/packages/pages/PackagesPage.jsx';
 import AboutPage from '../features/about/pages/AboutPage.jsx';
@@ -16,6 +17,7 @@ import NotFoundPage from '../features/not-found/pages/NotFoundPage.jsx';
 // Auth Pages
 import SignupPage from '../features/auth/pages/SignupPage.jsx';
 import LoginPage from '../features/auth/pages/LoginPage.jsx';
+import ForgotPasswordPage from '../features/auth/pages/ForgotPasswordPage.jsx';
 
 // Route Guards
 import ProtectedRoute from './guards/ProtectedRoute.jsx';
@@ -27,9 +29,8 @@ import TouristDashboardPage from '../features/tourist/pages/TouristDashboardPage
 import GuideDashboardPage from '../features/guide/pages/GuideDashboardPage.jsx';
 import AdminDashboardPage from '../features/admin/pages/AdminDashboardPage.jsx';
 
-import ForgotPasswordPage from '../features/auth/pages/ForgotPasswordPage.jsx';
 const router = createBrowserRouter([
-    // Authentication Layout (Without Navbar & Footer)
+    // Authentication Layout
     {
         element: <AuthLayout />,
         children: [
@@ -39,13 +40,15 @@ const router = createBrowserRouter([
         ],
     },
 
-    // Main Website Layout (With Navbar & Footer)
+    // Main Website Layout
     {
         path: '/',
         element: <MainLayout />,
         children: [
+            // Public Pages
             { index: true, element: <HomePage /> },
             { path: 'places', element: <PlacesPage /> },
+            { path: 'governorates', element: <GovernoratesPage /> },
             { path: 'guides', element: <GuidesPage /> },
             { path: 'packages', element: <PackagesPage /> },
             { path: 'about', element: <AboutPage /> },
