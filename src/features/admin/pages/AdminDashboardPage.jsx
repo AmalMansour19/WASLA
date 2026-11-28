@@ -11,8 +11,8 @@ import {
     ShieldCheck,
 } from 'lucide-react';
 
-import { useAuth } from '../../../../app/contexts/AuthContext.jsx';
-import { usePreferences } from '../../../../app/contexts/PreferencesContext.jsx';
+import { useAuth } from "../../../app/contexts/AuthContext.jsx";
+import { usePreferences } from "../../../app/contexts/PreferencesContext.jsx";
 
 function AdminDashboardPage() {
     const { user } = useAuth();
